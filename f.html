@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="b3">
+    <div id="co">
+        <div>"Strength doesn't come from what you can do. It comes from overcoming the things you once thought you couldn't."</div>
+        <div>"You are stronger than you think, braver than you feel, and more capable than you know."</div>
+        <div>"The strongest people are not those who show strength in front of us but those who win battles we know nothing about."</div>
+        <div>"Difficulties in life are intended to make us better, not bitter."</div>
+        <div>"You were given this life because you are strong enough to live it."</div>
+        <div>"When you feel like quitting, remember why you started."</div>
+        <div>"Strength grows in the moments when you think you can't go on but keep going anyway."</div>
+        <div>"The pain you feel today will be the strength you feel tomorrow."</div>
+        <div>"Stars can't shine without darkness."</div>
+    </div>
+    <audio id="bgAudio" src="WhatsApp Audio 2024-07-28 at 00.34.17_58bc8693.mp3" loop="loop"></audio>
+    <script>
+        // Restore audio position
+        const audio = document.getElementById('bgAudio');
+        const savedTime = localStorage.getItem('audioTime');
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+        audio.play().catch(e => console.log("Auto-play prevented:", e));
+        
+        // Update time periodically
+        setInterval(() => {
+            localStorage.setItem('audioTime', audio.currentTime);
+        }, 1000);
+    </script>
+</body>
+</html>

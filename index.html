@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="https://i.pinimg.com/originals/53/70/77/537077c86c99c266bc5e5ed77ac032b3.jpg" type="image/x-icon">
+</head>
+<body id="b1">
+    <div class="c2">
+    <h1>
+        TOKYO GHOUL 
+    </h1>
+    
+    <form>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+        <input type="password" name="password" placeholder="Password" required><br><br>
+        <input type="submit" value="Login">
+        <input type="button" value="Register" onClick="navigateWithAudio('register.html')">
+    </form>
+    <div id="q1"><a href="f.html" onclick="navigateWithAudio('f.html'); return false;">Famous Quotes</a></div>
+    </div>
+    <audio id="bgAudio" src="WhatsApp Audio 2024-07-28 at 00.34.17_58bc8693.mp3" loop="loop"></audio>
+    <script>
+        // Restore audio position
+        const audio = document.getElementById('bgAudio');
+        const savedTime = localStorage.getItem('audioTime');
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+        audio.play().catch(e => console.log("Auto-play prevented:", e));
+        
+        // Save audio position before navigating
+        function navigateWithAudio(url) {
+            localStorage.setItem('audioTime', audio.currentTime);
+            window.location.href = url;
+        }
+        
+        // Update time periodically
+        setInterval(() => {
+            localStorage.setItem('audioTime', audio.currentTime);
+        }, 1000);
+    </script>
+</body>
+</html>
