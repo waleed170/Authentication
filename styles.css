@@ -1,5 +1,86 @@
 body {
-  overflow: hidden; /* Locks scrolling */
+  margin: 0;
+  padding: 0;
+}
+
+/* Mute button/icon styling */
+.mute-btn {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    z-index: 1000;
+    background: rgba(0,0,0,0.70);
+    border: none;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px #0004;
+}
+.mute-btn:hover {
+    background: #e20707;
+}
+.mute-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+}
+.mute-btn.muted {
+    background: #b90505;
+}
+@media (max-width: 700px) {
+    .mute-btn {
+        top: 10px;
+        right: 10px;
+        width: 38px;
+        height: 38px;
+    }
+    .mute-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* --- Quotes Styling --- */
+.quotes-header {
+    text-align: center;
+    margin-top: 40px;
+}
+.quotes-header h2 {
+    color: #e20707;
+    font-size: 2.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+.quotes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 30px 10px 0 10px;
+}
+#co>div, .quotes-container>div {
+    background: rgba(226, 7, 7, 0.9);
+    color: #fff;
+    font-size: 20px;
+    margin: 10px;
+    padding: 28px 32px;
+    width: 320px;
+    border-radius: 18px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.20);
+    text-align: center;
+    transition: transform 0.2s;
+}
+#co>div:hover, .quotes-container>div:hover {
+    transform: scale(1.04) rotate(-1deg);
+    background: #b90505;
 }
 #q1{
     padding-top: 40px;
@@ -10,31 +91,139 @@ body {
         color: rgb(226, 7, 7);
     }
 }
-#co{
-    display:flex;
-    flex-wrap: wrap;
-}
-#co>div{
-    background-color: rgb(226, 7, 7);
-    font-size: 20px;
-    margin:20px;
-    padding:20px;
-    width:200px;
-}
-form{
-    text-align: center;
+
+/* ------- Enhanced Styling for Index & Quotes Pages ------- */
+.c2 {
+    margin: 0 auto;
+    max-width: 430px;
+    background: rgba(0,0,0,0.70);
+    border-radius: 25px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.44);
+    padding: 50px 50px 40px 50px;
     margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-h1{
+
+h1 {
     text-align: center;
-    color: rgb(226, 7, 7);
+    color: #e20707;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-top: 190px;
-    font-size: 80px;
+    margin-top: 0;
+    font-size: 70px;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-shadow: 2px 3px 12px #000, 0 1px 0 #b90505;
 }
-h2, #b3{
-    color:whitesmoke;
+
+form {
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
+
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    height: 42px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 9px;
+    padding: 0 16px;
+    background: rgba(255,255,255,0.94);
+    margin-bottom: 0;
+    box-shadow: 0 1px 4px rgba(226,7,7,0.10);
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    box-shadow: 0 0 0 2px #e20707;
+}
+
+form input[type="submit"], 
+form input[type="button"], 
+button[type="submit"] {
+    width: 100%;
+    height: 44px;
+    font-size: 1.08rem;
+    background: linear-gradient(90deg, #e20707 60%, #b90505 100%);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 600;
+    box-shadow: 0 1px 9px rgba(226,7,7,0.10);
+    transition: background 0.2s, box-shadow 0.2s;
+    margin-bottom: 0;
+}
+
+form input[type="submit"]:hover, 
+form input[type="button"]:hover, 
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #b90505 80%, #e20707 100%);
+    box-shadow: 0 2px 12px rgba(226,7,7,0.17);
+}
+
+#q1 {
+    padding-top: 38px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#q1 a {
+    color: #e20707;
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+    text-shadow: 0 2px 8px #000;
+}
+#q1 a:hover {
+    color: #fff;
+    text-shadow: 0 2px 18px #e20707, 0 1px 0 #b90505;
+    letter-spacing: 1.5px;
+}
+
+/* --------- FAMOUS QUOTES PAGE STYLING ----------- */
+#b3 {
+    background: linear-gradient(135deg, #0d0d0d 60%, #e20707 100%);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+#co {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 70px;
+    padding-bottom: 40px;
+}
+#co > div {
+    background: rgba(226, 7, 7, 0.93);
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 14px;
+    padding: 38px 30px;
+    width: 340px;
+    border-radius: 18px;
+    box-shadow: 0 8px 44px rgba(0,0,0,0.16);
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: transform 0.22s, background 0.2s;
+    letter-spacing: 0.2px;
+}
+#co > div:hover {
+    transform: scale(1.06) rotate(-2deg);
+    background: #b90505;
+    color: #ffeaea;
+}
+
+/* -------- Backgrounds for index and register -------- */
 #b1{
     background-image: url('2048.jpg');
     background-size: cover;
@@ -51,23 +240,26 @@ h2, #b3{
     background-attachment: fixed;
     min-height: 100vh;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-y: auto;
 }
 #b3{
     background-color: black;
 }
+
 .container {
     width: 300px;
     margin: 50px auto;
     text-align: center;
 }
-.c1{input[type="text"], input[type="email"], input[type="password"] {
+
+.c1 input[type="text"], .c1 input[type="email"], .c1 input[type="password"] {
     width: 100%;
     height: 40px;
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}}
+}
 input[type="number"] {
     width: 100%;
     height: 40px;
@@ -89,10 +281,33 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: black;
 }
+
+/* Responsive Design */
 @media (max-width: 1000px){
     #b1, #b2{
         background-color:black;
         background-image: none;
         transition: 1s ease-out;
+    }
+    .quotes-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+    .quotes-header h2 {
+        font-size: 2rem;
+    }
+    .c2 {
+        max-width: 98vw;
+        padding: 18px 8px 18px 8px;
+        margin-top: 24px;
+    }
+    h1 {
+        font-size: 2.2rem;
+    }
+    #co > div {
+        width: 96vw;
+        padding: 22px 4vw;
+        font-size: 1.1rem;
     }
 }
