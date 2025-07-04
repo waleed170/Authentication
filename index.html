@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOKYO GHOUL Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="https://i.pinimg.com/originals/53/70/77/537077c86c99c266bc5e5ed77ac032b3.jpg" type="image/x-icon">
+</head>
+<body id="b1">
+    <button class="mute-btn" id="muteBtn" aria-label="Mute audio">
+        <!-- SVG icon inserted by JS -->
+    </button>
+    <div class="c2">
+        <h1>
+            TOKYO GHOUL 
+        </h1>
+        <form>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <input type="button" value="Register" onClick="navigateWithAudio('register.html')">
+        </form>
+        <div id="q1"><a href="f.html" onclick="navigateWithAudio('f.html'); return false;">Famous Quotes</a></div>
+    </div>
+    <audio id="bgAudio" src="WhatsApp Audio 2024-07-28 at 00.34.17_58bc8693.mp3" loop="loop"></audio>
+    <script>
+        // Audio control and mute button logic
+        const audio = document.getElementById('bgAudio');
+        const muteBtn = document.getElementById('muteBtn');
+        // Proper SVGs for mute/unmute
+        const iconUnmuted = `<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zm2.5 0c0 2.76-1.68 5.1-4.07 6.11l1.43 1.43C19.07 18.28 21 15.41 21 12s-1.93-6.28-4.14-7.54l-1.43 1.43C17.32 6.9 19 9.24 19 12z"/></svg>`;
+        const iconMuted = `<svg viewBox="0 0 24 24"><path d="M16.5 12c0 .47-.15.92-.45 1.29l2.11 2.11c.53-.81.84-1.77.84-2.82 0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4zm3.27 6.73L4.27 3 3 4.27l5 5H3v4h4l5 5v-3.73l7.73 7.73zM12 19c1.63 0 3.13-.61 4.24-1.59l1.46 1.46c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.46-1.46A6.978 6.978 0 0 0 12 19z"/></svg>`;
+        // Restore audio position
+        const savedTime = localStorage.getItem('audioTime');
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+        // Restore mute state
+        let isMuted = localStorage.getItem('audioMuted') === 'true';
+        audio.muted = isMuted;
+        updateMuteIcon();
+        audio.play().catch(e => console.log("Auto-play prevented:", e));
+        // Mute button toggle
+        muteBtn.addEventListener('click', function() {
+            isMuted = !audio.muted;
+            audio.muted = isMuted;
+            localStorage.setItem('audioMuted', isMuted);
+            updateMuteIcon();
+        });
+        function updateMuteIcon() {
+            muteBtn.classList.toggle('muted', audio.muted);
+            muteBtn.innerHTML = audio.muted ? iconMuted : iconUnmuted;
+        }
+        // Save audio position before navigating
+        function navigateWithAudio(url) {
+            localStorage.setItem('audioTime', audio.currentTime);
+            localStorage.setItem('audioMuted', audio.muted);
+            window.location.href = url;
+        }
+        // Update time periodically
+        setInterval(() => {
+            localStorage.setItem('audioTime', audio.currentTime);
+        }, 1000);
+    </script>
+</body>
+</html>
