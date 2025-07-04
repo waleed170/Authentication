@@ -25,15 +25,19 @@
     </div>
     <audio id="bgAudio" src="WhatsApp Audio 2024-07-28 at 00.34.17_58bc8693.mp3" loop="loop"></audio>
     <script>
+        // Make audio start from beginning on first visit
+        if (!localStorage.getItem('visitedOnce')) {
+            localStorage.removeItem('audioTime');
+            localStorage.setItem('visitedOnce', 'true');
+        }
         // Audio control and mute button logic
         const audio = document.getElementById('bgAudio');
         const muteBtn = document.getElementById('muteBtn');
         // Proper SVGs for mute/unmute
         const iconUnmuted = `<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zm2.5 0c0 2.76-1.68 5.1-4.07 6.11l1.43 1.43C19.07 18.28 21 15.41 21 12s-1.93-6.28-4.14-7.54l-1.43 1.43C17.32 6.9 19 9.24 19 12z"/></svg>`;
         const iconMuted = `<svg viewBox="0 0 24 24"><path d="M16.5 12c0 .47-.15.92-.45 1.29l2.11 2.11c.53-.81.84-1.77.84-2.82 0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4zm3.27 6.73L4.27 3 3 4.27l5 5H3v4h4l5 5v-3.73l7.73 7.73zM12 19c1.63 0 3.13-.61 4.24-1.59l1.46 1.46c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.46-1.46A6.978 6.978 0 0 0 12 19z"/></svg>`;
-        // Restore audio position
         const savedTime = localStorage.getItem('audioTime');
-        if (savedTime) {
+        if (savedTime !== null && !isNaN(savedTime)) {
             audio.currentTime = parseFloat(savedTime);
         }
         // Restore mute state
